@@ -17,3 +17,6 @@ def krosovkaMakeAPI(request):
     krosovka = Krosovka.objects.all()
     serializer = KrosovkaAPI(krosovka, many=True)
     return Response(serializer.data)
+
+
+dsas
