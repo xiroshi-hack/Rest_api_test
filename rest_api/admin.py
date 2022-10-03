@@ -3,3 +3,4 @@ from .models import *
 
 admin.site.register(Krosovka)
 admin.site.register(Mashina)
+admin.site.register(Mahsulot)

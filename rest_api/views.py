@@ -10,7 +10,7 @@ from rest_framework import permissions
 def home(request):
     return render(request, 'home.html')
 
-
+# krasovka API
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
 def krosovkaMakeAPI(request):
@@ -47,4 +47,24 @@ def MashinaMakeAPI(request):
 def bittaAPI(request, pk):
     mashina = Mashina.objects.get(id=pk)
     serializer = MashinaAPI(mashina, many=False)
+    return Response(serializer.data)
+
+# mahsulot API
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def MahsulotMakeAPI(request):
+    mahsulot = Mahsulot.objects.all()
+    serializer = MashinaAPI(mahsulot, many=True)
+    return Response(serializer.data)
+
+
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def birAPI(request, pk):
+    mahsulot = Mahsulot.objects.get(id=pk)
+    serializer = MashinaAPI(mahsulot, many=False)
     return Response(serializer.data)

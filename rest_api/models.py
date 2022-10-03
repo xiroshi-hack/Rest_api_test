@@ -19,3 +19,13 @@ class Mashina(models.Model):
     
     def __str__(self):
         return f"{self.brand} brandi"
+    
+    
+    
+    
+class Mahsulot(models.Model):
+    brand = models.CharField(max_length=100)
+    sifati = models.CharField(max_length=100)
+    
+    def __str__(self):
+        return f"{self.brand} nomli meva"
