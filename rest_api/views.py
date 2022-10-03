@@ -18,5 +18,3 @@ def krosovkaMakeAPI(request):
     serializer = KrosovkaAPI(krosovka, many=True)
     return Response(serializer.data)
 
-
-dsas
