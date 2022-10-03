@@ -9,3 +9,13 @@ class Krosovka(models.Model):
     
     def __str__(self):
         return f"{self.brand} brandi"
+    
+    
+    
+    
+class Mashina(models.Model):
+    brand = models.CharField(max_length=100)
+    raqami = models.IntegerField(default='555')
+    
+    def __str__(self):
+        return f"{self.brand} brandi"

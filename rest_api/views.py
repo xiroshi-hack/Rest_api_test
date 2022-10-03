@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .serializers import KrosovkaAPI
+from .serializers import *
 from .models import *
 #rest framework
 from rest_framework.response import Response
@@ -16,4 +16,35 @@ def home(request):
 def krosovkaMakeAPI(request):
     krosovka = Krosovka.objects.all()
     serializer = KrosovkaAPI(krosovka, many=True)
+    return Response(serializer.data)
+
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def singleAPI(request, pk):
+    krosovka = Krosovka.objects.get(id=pk)
+    serializer = KrosovkaAPI(krosovka, many=False)
+    return Response(serializer.data)
+
+
+
+# mashina API
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def MashinaMakeAPI(request):
+    mashina = Mashina.objects.all()
+    serializer = MashinaAPI(mashina, many=True)
+    return Response(serializer.data)
+
+
+
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def bittaAPI(request, pk):
+    mashina = Mashina.objects.get(id=pk)
+    serializer = MashinaAPI(mashina, many=False)
     return Response(serializer.data)
