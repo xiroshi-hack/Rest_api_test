@@ -10,5 +10,3 @@ urlpatterns = [
     path('mashina-api/', MashinaMakeAPI),
     path('mashina-api/<int:pk>/', bittaAPI),
 ]
-
-.ppya
