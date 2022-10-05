@@ -12,5 +12,6 @@ urlpatterns = [
     path('mahsulot-api/', MahsulotMakeAPI),
     path('mahsulot-api/<int:pk>/', birAPI),
     path('create/', malumotjoylash),
-    path('update/<int:pk>/', malumotyangilash)
+    path('update/<int:pk>/', malumotyangilash),
+    path('delete/<int:pk>/', malumotdelete)
 ]

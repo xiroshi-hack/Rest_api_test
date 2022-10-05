@@ -62,7 +62,7 @@ def bittaAPI(request, pk):
 @permission_classes((permissions.AllowAny, ))
 def MahsulotMakeAPI(request):
     mahsulot = Mahsulot.objects.all()
-    serializer = MashinaAPI(mahsulot, many=True)
+    serializer = MahsulotAPI(mahsulot, many=True)
     return Response(serializer.data)
 
 
@@ -80,16 +80,7 @@ def birAPI(request, pk):
 
 # post joylash POST malumot joylash
 
-# @api_view(["POST"])
-# @permission_classes((permissions.AllowAny, ))
-# def malumotjoylash(request):
-#     mahsulot = Mahsulot.objects.all()
-#     serializer = MahsulotAPI(mahsulot, )
-#     if serializer.is_valid():
-#         serializer.save()
-        
-#     return Response(serializer.data)
-    
+
 @api_view(['POST'])
 @permission_classes((permissions.AllowAny,))
 def malumotjoylash(request):
@@ -110,6 +101,19 @@ def malumotyangilash(request, pk):
     if serializer.is_valid():
         serializer.save()
         
+    return Response(serializer.data)
+
+
+
+
+
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
+def PostYangilash(request, pk):
+    mahsulot = Mahsulot.objects.get(id=pk)
+    serializer = MahsulotAPI(instance=mahsulot, data=request.data)
+    if serializer.is_valid():
+        serializer.save()
     return Response(serializer.data)
     
     
