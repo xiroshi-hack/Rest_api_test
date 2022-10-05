@@ -17,7 +17,7 @@ class MashinaAPI(serializers.ModelSerializer):
         fields = '__all__'
         
         
-class Mahsulot(serializers.ModelSerializer):
+class MahsulotAPI(serializers.ModelSerializer):
     class Meta:
         model = Mahsulot
         fields = '__all__'

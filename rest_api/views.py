@@ -1,3 +1,5 @@
+from ast import Delete
+from re import A
 from django.shortcuts import render
 from .serializers import *
 from .models import *
@@ -10,6 +12,8 @@ from rest_framework import permissions
 def home(request):
     return render(request, 'home.html')
 
+
+
 # krasovka API
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
@@ -19,6 +23,7 @@ def krosovkaMakeAPI(request):
     return Response(serializer.data)
 
 
+# krasovka APIni aloxida chiqarish
 
 @api_view(["GET"])
 @permission_classes((permissions.AllowAny, ))
@@ -40,6 +45,7 @@ def MashinaMakeAPI(request):
     return Response(serializer.data)
 
 
+# krasovka APIni aloxida chiqarish
 
 
 @api_view(["GET"])
@@ -60,6 +66,7 @@ def MahsulotMakeAPI(request):
     return Response(serializer.data)
 
 
+# krasovka APIni aloxida chiqarish
 
 
 @api_view(["GET"])
@@ -68,3 +75,44 @@ def birAPI(request, pk):
     mahsulot = Mahsulot.objects.get(id=pk)
     serializer = MashinaAPI(mahsulot, many=False)
     return Response(serializer.data)
+
+
+
+# post joylash POST malumot joylash
+
+@api_view(["POST"])
+@permission_classes((permissions.AllowAny, ))
+def malumotjoylash(request):
+    serializer = MahsulotAPI(data=request.data)
+    if serializer.is_valid():
+        serializer.save()
+        
+    return Response(serializer.data)
+    
+    
+# update post
+
+
+@api_view(["POST"])
+@permission_classes((permissions.AllowAny, ))
+def malumotyangilash(request, pk):
+    mahsulot = Mahsulot.objects.get(id=pk)
+    serializer = MahsulotAPI(instance=mahsulot, data=request.data)
+    
+    if serializer.is_valid():
+        serializer.save()
+        
+    return Response(serializer.data)
+    
+    
+    
+# post delete
+
+
+@api_view(["DELETE"])
+@permission_classes((permissions.AllowAny, ))
+def malumotdelete(request, pk):
+    mahsulot = Mahsulot.objects.get(id=pk)
+    mahsulot.delete()
+        
+    return Response("mufoqiyatli ochirildi")

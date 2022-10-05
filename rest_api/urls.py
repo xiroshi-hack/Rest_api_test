@@ -11,4 +11,6 @@ urlpatterns = [
     path('mashina-api/<int:pk>/', bittaAPI),
     path('mahsulot-api/', MahsulotMakeAPI),
     path('mahsulot-api/<int:pk>/', birAPI),
+    path('create/', malumotjoylash),
+    path('update/<int:pk>/', malumotyangilash)
 ]
