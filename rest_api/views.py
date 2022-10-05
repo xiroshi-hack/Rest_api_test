@@ -80,16 +80,24 @@ def birAPI(request, pk):
 
 # post joylash POST malumot joylash
 
-@api_view(["POST"])
-@permission_classes((permissions.AllowAny, ))
+# @api_view(["POST"])
+# @permission_classes((permissions.AllowAny, ))
+# def malumotjoylash(request):
+#     mahsulot = Mahsulot.objects.all()
+#     serializer = MahsulotAPI(mahsulot, )
+#     if serializer.is_valid():
+#         serializer.save()
+        
+#     return Response(serializer.data)
+    
+@api_view(['POST'])
+@permission_classes((permissions.AllowAny,))
 def malumotjoylash(request):
     serializer = MahsulotAPI(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        
     return Response(serializer.data)
-    
-    
+
 # update post
 
 
