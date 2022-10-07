@@ -1,4 +1,6 @@
 from email.policy import default
+from itertools import product
+from secrets import choice
 from django.db import models
 
 class Krosovka(models.Model):
@@ -24,8 +26,17 @@ class Mashina(models.Model):
     
     
 class Mahsulot(models.Model):
+    
+    SPORT = 'SPORT'
+    BAZM = 'BAZM'
+    
+    PRODUCT_FILTER = (
+        (SPORT, 'Sport'),
+        (BAZM, 'Bazm')
+    )
     brand = models.CharField(max_length=100)
     sifati = models.CharField(max_length=100)
+    turi = models.CharField(max_length=6, choices=PRODUCT_FILTER, default=SPORT)
     
     def __str__(self):
         return f"{self.brand} nomli meva"

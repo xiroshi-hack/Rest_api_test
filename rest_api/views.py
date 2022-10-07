@@ -1,12 +1,13 @@
 from ast import Delete
 from re import A
+from urllib import response
 from django.shortcuts import render
 from .serializers import *
 from .models import *
 #rest framework
 from rest_framework.response import Response
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework import permissions
+from rest_framework import permissions, generics, filters
 
 
 def home(request):
@@ -128,3 +129,30 @@ def malumotdelete(request, pk):
     mahsulot.delete()
         
     return Response("mufoqiyatli ochirildi")
+
+
+
+#CRUD
+
+
+# REST API filter
+
+@api_view(["GET"])
+@permission_classes((permissions.AllowAny, ))
+def filterMahsulot(request):
+    filter = Mahsulot.objects.filter(turi='SPORT')
+    serializer = MahsulotAPI(filter, many=True)
+    return Response(serializer.data)
+
+
+
+# search API
+
+class MahsulotSeachAPI(generics.ListAPIView):
+    queryset = Mahsulot.objects.all()
+    serializer_class = MahsulotAPI
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['brand', 'sifati']
+    
+maxsulotserach = MahsulotSeachAPI.as_view()
+
